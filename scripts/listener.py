@@ -7,9 +7,9 @@ def test_callback(data):
     espeakng.Speaker().say(data.data)
 
 def listener():
-    print('starting gcs vocal listener')
+    rospy.init_node('gcs_vocal', anonymous=True)
+    rospy.loginfo('starting gcs vocalizer listener')
 
-    rospy.init_node('listener', anonymous=True)
     rospy.Subscriber('vocal/test', String, test_callback)
 
     rospy.spin()
