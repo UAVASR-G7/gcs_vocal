@@ -22,7 +22,7 @@ def listener():
     rospy.loginfo('starting gcs vocalizer listener')
 
     rospy.Subscriber('vocal/test', String, test_callback)
-    rospy.Subscriber('vocal/land', Bool, test_callback)
+    rospy.Subscriber('vocal/land', Bool, landing_callback)
     rospy.Subscriber('vocal/aruco', Int32, aruco_callback)
 
     rospy.spin()
