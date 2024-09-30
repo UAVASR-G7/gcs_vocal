@@ -19,8 +19,8 @@ def aruco_callback(msg):
     espeakng.Speaker().say("Detected aruco marker with ID %d" % msg.data)
 
 def target_callback(msg):
-    rospy.loginfo("received target of type: '%s'" % msg.data.target_label)
-    espeakng.Speaker().say("%s found at %.1f in X and %.1f in Y" % (msg.data.target_label, msg.data.frame_x, msg.data.frame_y))
+    rospy.loginfo("received target of type: '%s'" % msg.target_label)
+    espeakng.Speaker().say("%s found at %.1f in X and %.1f in Y" % (msg.target_label, msg.frame_x, msg.frame_y))
 
 def listener():
     rospy.init_node('gcs_vocal', anonymous=True)
@@ -29,7 +29,7 @@ def listener():
     rospy.Subscriber('vocal/test', String, test_callback)
     rospy.Subscriber('vocal/land', Bool, landing_callback)
     rospy.Subscriber('vocal/aruco', Int32, aruco_callback)
-    rospy.Subscriber('vocal/target', TargetLocalisation, target_callback)
+    rospy.Subscriber('target_detection/localisation', TargetLocalisation, target_callback)
 
     rospy.spin()
 
