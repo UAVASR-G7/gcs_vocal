@@ -1,6 +1,17 @@
 # gcs_vocal
 Audio vocaliser for GCS
 
+## Description
+`gcs_vocal` is a simple ROS node designed for the UAVASR project. The node subscribes to various topics (see [Topics](#topics)) and when a message is received, an audible alert is made via the `espeak-ng` library.
+
+### Topics
+| Topic | Description | Message Type |
+| --- | --- | --- |
+| `vocal/aruco` | Triggered when the imagery subsystem detects an ArUCO marker | `std_msgs/Int32` |
+| `vocal/land` | Triggered when the UAV lands at the end of the mission | `std_msgs/Bool` |
+| `vocal/test` | Used to manually test that speaker is working (see [Testing](#testing)) | `std_msgs/String` |
+| `target_detection/localisation` | Triggered when the imagery subsystem detects a target | `spar_msgs/TargetLocalisation` |
+
 ## Testing
 The vocalizer package can be tested using `rostopic pub` seen below.
 ```bash
