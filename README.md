@@ -32,7 +32,12 @@ catkin_make
 ```
 
 ## Testing
-The vocalizer package can be tested using `rostopic pub` seen below.
+The `gcs_vocal` node can be started using `rosrun` as seen below.
+```bash
+rosrun gcs_vocal listener.py
+```
+
+The node can then be tested via the `vocal/test` topic as seen below.
 ```bash
 rostopic pub /vocal/test std_msgs/String "Hello World"
 ```
