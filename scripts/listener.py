@@ -28,11 +28,13 @@ def aruco_callback(msg):
         espeakng.Speaker().say("Detected aruco marker with ID %d" % msg.data)
 
 def target_callback(msg):
-    rospy.loginfo("received target of type: '%s'" % msg.target_label)
-    espeakng.Speaker().say(
-        "%s found at %.1f in X and %.1f in Y"
-        % (msg.target_label, msg.frame_x, msg.frame_y)
-    )
+    global mutex
+    with mutex:
+        rospy.loginfo("received target of type: '%s'" % msg.target_label)
+        espeakng.Speaker().say(
+            "%s found at %.1f in X and %.1f in Y"
+            % (msg.target_label, msg.frame_x, msg.frame_y)
+        )
 
 def listener():
     rospy.init_node("gcs_vocal", anonymous=True)
